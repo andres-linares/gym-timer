@@ -5,6 +5,7 @@
     <button @click="pauseTimer" :disabled="!running || paused">Pausar</button>
     <button @click="resumeTimer" :disabled="!paused">Continuar</button>
     <button @click="startTimer" :disabled="running">Iniciar</button>
+    <button @click="stopTimer" :disabled="!running">Detener</button>
   </div>
 </template>
 
@@ -63,6 +64,13 @@ export default {
       this.currentTime = performance.now();
       this.createTimer();
       this.paused = false;
+    },
+    stopTimer() {
+      clearInterval(this.timer);
+      this.ellapsedTime = 0;
+      this.currentTime = null;
+      this.paused = false;
+      this.running = false;
     },
   },
 };
