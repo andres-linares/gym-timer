@@ -2,8 +2,9 @@
   <div class="timer">
     <div class="display">{{ formattedTime }}</div>
 
-    <button disabled>Pausar</button>
-    <button @click="startTimer">Iniciar</button>
+    <button @click="pauseTimer" :disabled="!running || paused">Pausar</button>
+    <button @click="resumeTimer" :disabled="!paused">Continuar</button>
+    <button @click="startTimer" :disabled="running">Iniciar</button>
   </div>
 </template>
 
@@ -12,22 +13,22 @@ export default {
   name: "TheTimer",
   data() {
     return {
-      initialTime: null,
+      ellapsedTime: 0,
       currentTime: null,
       timer: null,
+
+      running: false,
+      paused: false,
     };
   },
   computed: {
-    time() {
-      return this.currentTime - this.initialTime;
-    },
     formattedTime() {
-      const theTime = this.time;
+      const time = this.ellapsedTime;
 
-      let hundredth = Math.round((theTime / 10) % 100);
-      let seconds = Math.floor((theTime / 1000) % 60);
-      let minutes = Math.floor((theTime / (1000 * 60)) % 60);
-      let hours = Math.floor(theTime / (1000 * 60 * 60));
+      let hundredth = Math.round((time / 10) % 100);
+      let seconds = Math.floor((time / 1000) % 60);
+      let minutes = Math.floor((time / (1000 * 60)) % 60);
+      let hours = Math.floor(time / (1000 * 60 * 60));
 
       hundredth = hundredth.toString().padStart(2, "0");
       seconds = seconds.toString().padStart(2, "0");
@@ -40,12 +41,28 @@ export default {
     if (this.timer) clearInterval(this.timer);
   },
   methods: {
-    startTimer() {
-      this.initialTime = performance.now();
-
+    createTimer() {
       this.timer = setInterval(() => {
+        if (this.currentTime) {
+          this.ellapsedTime += performance.now() - this.currentTime;
+        }
+
         this.currentTime = performance.now();
       }, 10);
+    },
+    startTimer() {
+      this.createTimer();
+      this.running = true;
+    },
+    pauseTimer() {
+      clearInterval(this.timer);
+      this.paused = true;
+      this.currentTime = null;
+    },
+    resumeTimer() {
+      this.currentTime = performance.now();
+      this.createTimer();
+      this.paused = false;
     },
   },
 };
