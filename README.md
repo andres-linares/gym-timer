@@ -1,4 +1,6 @@
-# gym-timer
+# Gym Timer
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5923f524-0bea-48ba-a4dc-d48b3c20a5f1/deploy-status)](https://app.netlify.com/sites/gymtimer/deploys)
 
 ## Project setup
 ```
