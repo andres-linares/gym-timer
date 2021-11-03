@@ -1,3 +1,4 @@
+import { formatTime } from "@/utils/formatters";
 import { ref, onUnmounted, computed } from "vue";
 
 export default function () {
@@ -8,21 +9,7 @@ export default function () {
   const isRunning = ref(false);
   const isPaused = ref(false);
 
-  const formattedTime = computed(() => {
-    const time = ellapsedTime.value;
-
-    const hundredth = Math.round((time / 10) % 100);
-    const seconds = Math.floor((time / 1000) % 60);
-    const minutes = Math.floor((time / (1000 * 60)) % 60);
-    const hours = Math.floor(time / (1000 * 60 * 60));
-
-    const hundredthText = hundredth.toString().padStart(2, "0");
-    const ss = seconds.toString().padStart(2, "0");
-    const mm = minutes.toString().padStart(2, "0");
-    const hh = hours.toString();
-
-    return `${hh}:${mm}:${ss}.${hundredthText}`;
-  });
+  const formattedTime = computed(() => formatTime(ellapsedTime.value));
 
   const createTimer = () => {
     timer = setInterval(() => {
