@@ -11,17 +11,12 @@
       <button @click="resumeTimer" :disabled="!isPaused">Continuar</button>
     </div>
   </div>
-
-  <the-countdown name="Descanso entre series" :defaultValue="90" />
-  <the-countdown name="Descanso entre ejercicios" :defaultValue="180" />
 </template>
 
 <script>
 import useTimer from "@/composables/useTimer";
-import TheCountdown from "./TheCountdown.vue";
 
 export default {
-  components: { TheCountdown },
   name: "TheTimer",
   setup() {
     const timer = useTimer();
