@@ -1,19 +1,5 @@
-import { onMounted, onUnmounted } from "vue";
-
 export default function () {
-  const handleRefresh = (e: Event) => {
-    const response = confirm("Estas seguro de abandonar la pagina");
-
-    if (!response) e.preventDefault();
-
-    return "do something";
+  window.onbeforeunload = function () {
+    return "¿Estás seguro de abandonar la página?";
   };
-
-  onMounted(() => {
-    window.addEventListener("beforeunload", handleRefresh);
-  });
-
-  onUnmounted(() => {
-    window.removeEventListener("beforeunload", handleRefresh);
-  });
 }
