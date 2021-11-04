@@ -9,12 +9,16 @@
 <script>
 import TheTimer from "@/components/TheTimer";
 import TheCountdown from "@/components/TheCountdown.vue";
+import useAvoidRefresh from "@/composables/useAvoidRefresh";
 
 export default {
   name: "Home",
   components: {
     TheTimer,
     TheCountdown,
+  },
+  setup() {
+    useAvoidRefresh();
   },
 };
 </script>
