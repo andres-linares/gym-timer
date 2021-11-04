@@ -1,8 +1,19 @@
+import { Timelog } from "@/interfaces";
 import { createStore } from "vuex";
 
-export default createStore({
-  state: {},
-  mutations: {},
+interface State {
+  timelogs: Timelog[];
+}
+
+export default createStore<State>({
+  state: {
+    timelogs: [],
+  },
+  mutations: {
+    addTimelog(state, payload: Timelog) {
+      state.timelogs = [...state.timelogs, payload];
+    },
+  },
   actions: {},
   modules: {},
 });

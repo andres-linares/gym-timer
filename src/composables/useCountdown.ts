@@ -12,6 +12,7 @@ export default function (initialTime: number) {
 
   const startCountdown = () => {
     if (timer) clearInterval(timer);
+    currentTime = null;
     timeLeft.value = countdownTime.value;
 
     timer = setInterval(() => {

@@ -18,6 +18,7 @@
 
 <script>
 import useCountdown from "@/composables/useCountdown";
+import { useStore } from "vuex";
 
 export default {
   props: {
@@ -26,9 +27,21 @@ export default {
     id: { type: String, required: true },
   },
   setup(props) {
+    const store = useStore();
     const countdown = useCountdown(props.defaultValue);
 
-    return { ...countdown };
+    const startCountdown = () => {
+      const timelog = {
+        datetime: Date.now(),
+        timeInMs: 1000,
+        event: props.name,
+      };
+      store.commit("addTimelog", timelog);
+
+      countdown.startCountdown();
+    };
+
+    return { ...countdown, startCountdown };
   },
 };
 </script>
