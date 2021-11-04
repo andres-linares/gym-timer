@@ -22,6 +22,7 @@ export default function (initialTime: number) {
       if (timeLeft.value <= 0) {
         clearInterval(timer);
         timeLeft.value = 0;
+        currentTime = null;
       }
 
       currentTime = performance.now();

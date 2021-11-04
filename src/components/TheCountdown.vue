@@ -1,15 +1,18 @@
 <template>
   <div class="countdown">
-    <label>
-      {{ name }}
-      <input type="number" min="0" v-model="countdownTime" />
-    </label>
+    <h6 :id="id">{{ name }}</h6>
 
-    <div class="screen">
+    <div class="actions-container">
+      <input
+        type="number"
+        min="0"
+        v-model="countdownTime"
+        :aria-labelledby="id"
+      />
+
       <button @click="startCountdown">Iniciar</button>
-
-      <div class="display">{{ formattedTime }}</div>
     </div>
+    <div class="display">{{ formattedTime }}</div>
   </div>
 </template>
 
@@ -19,7 +22,8 @@ import useCountdown from "@/composables/useCountdown";
 export default {
   props: {
     name: { type: String, required: true },
-    defaultValue: { type: Number },
+    defaultValue: { type: Number, required: true },
+    id: { type: String, required: true },
   },
   setup(props) {
     const countdown = useCountdown(props.defaultValue);
@@ -33,38 +37,37 @@ export default {
 .countdown {
   margin-bottom: 5vh;
 
-  label {
+  h6 {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    margin: 0 0 0.75em 0;
+  }
+
+  .actions-container {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    column-gap: 5vw;
     margin-bottom: 2vh;
+
+    button {
+      border-radius: 0.3em;
+      border: none;
+      background: #000;
+      color: #fff;
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      padding: 0.3em 1em;
+    }
 
     input {
       height: min-content;
       width: 5ch;
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      padding: 0em 0.25em;
     }
   }
 
-  .screen {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-
-    .display {
-      font-family: monospace;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-    }
-
-    button {
-      border-radius: 50%;
-      width: 20vw;
-      height: 20vw;
-      border: none;
-      background: #000;
-      color: #fff;
-      font-size: clamp(1.125rem, 2vw, 1.5rem);;
-    }
+  .display {
+    font-family: monospace;
+    font-size: clamp(1.5rem, 3vw, 2rem);
   }
 }
 </style>

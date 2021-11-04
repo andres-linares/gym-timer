@@ -1,8 +1,19 @@
 <template>
   <div class="home">
     <the-timer />
-    <the-countdown name="Descanso entre series" :defaultValue="90" />
-    <the-countdown name="Descanso entre ejercicios" :defaultValue="180" />
+
+    <div class="countdowns-container">
+      <the-countdown
+        name="Descanso entre series"
+        id="seriesRest"
+        :defaultValue="90"
+      />
+      <the-countdown
+        name="Descanso entre ejercicios"
+        id="exercisesRest"
+        :defaultValue="180"
+      />
+    </div>
   </div>
 </template>
 
@@ -22,3 +33,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.countdowns-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 5vw;
+}
+</style>
