@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TheTimer from "@/components/TheTimer";
+import TheTimer from "@/components/TheTimer.vue";
 import TheCountdown from "@/components/TheCountdown.vue";
 import useAvoidRefresh from "@/composables/useAvoidRefresh";
 
