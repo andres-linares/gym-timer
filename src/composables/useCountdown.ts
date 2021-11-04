@@ -1,5 +1,5 @@
 import { formatTime } from "@/utils/formatters";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 
 export default function (initialTime: number) {
   let currentTime: number | null = null;
@@ -10,10 +10,22 @@ export default function (initialTime: number) {
 
   const formattedTime = computed(() => formatTime(timeLeft.value * 1000));
 
-  const startCountdown = () => {
+  watch(countdownTime, () => (timeLeft.value = countdownTime.value));
+
+  const resetCountdown = () => {
     if (timer) clearInterval(timer);
     currentTime = null;
     timeLeft.value = countdownTime.value;
+  };
+
+  const stopCountdown = () => {
+    clearInterval(timer);
+    currentTime = null;
+    timeLeft.value = 0;
+  };
+
+  const startCountdown = () => {
+    resetCountdown();
 
     timer = setInterval(() => {
       if (currentTime) {
@@ -21,9 +33,8 @@ export default function (initialTime: number) {
       }
 
       if (timeLeft.value <= 0) {
-        clearInterval(timer);
-        timeLeft.value = 0;
-        currentTime = null;
+        stopCountdown();
+        return;
       }
 
       currentTime = performance.now();
