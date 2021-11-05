@@ -1,5 +1,5 @@
 const formatTime = (timeInMs: number): string => {
-  const hundredth = Math.round((timeInMs / 10) % 100);
+  const hundredth = Math.floor((timeInMs / 10) % 100);
   const seconds = Math.floor((timeInMs / 1000) % 60);
   const minutes = Math.floor((timeInMs / (1000 * 60)) % 60);
   const hours = Math.floor(timeInMs / (1000 * 60 * 60));
