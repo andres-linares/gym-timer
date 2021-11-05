@@ -10,7 +10,7 @@
         :aria-labelledby="id"
       />
 
-      <button @click="startCountdown">Iniciar</button>
+      <a-button @click="startCountdown">Iniciar</a-button>
     </div>
     <div class="display">{{ formattedTime }}</div>
   </div>
@@ -19,8 +19,10 @@
 <script>
 import useCountdown from "@/composables/useCountdown";
 import { useStore } from "vuex";
+import AButton from "./atoms/AButton.vue";
 
 export default {
+  components: { AButton },
   props: {
     name: { type: String, required: true },
     defaultValue: { type: Number, required: true },

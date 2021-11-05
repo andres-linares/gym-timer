@@ -3,20 +3,22 @@
     <div class="display">{{ formattedTime }}</div>
 
     <div class="buttons">
-      <button @click="startTimer" :disabled="isRunning">Iniciar</button>
-      <button @click="stopTimer" :disabled="!isRunning">Detener</button>
-      <button @click="pauseTimer" :disabled="!isRunning || isPaused">
+      <a-button @click="startTimer" :disabled="isRunning">Iniciar</a-button>
+      <a-button @click="stopTimer" :disabled="!isRunning">Detener</a-button>
+      <a-button @click="pauseTimer" :disabled="!isRunning || isPaused">
         Pausar
-      </button>
-      <button @click="resumeTimer" :disabled="!isPaused">Continuar</button>
+      </a-button>
+      <a-button @click="resumeTimer" :disabled="!isPaused">Continuar</a-button>
     </div>
   </div>
 </template>
 
 <script>
 import useTimer from "@/composables/useTimer";
+import AButton from "./atoms/AButton.vue";
 
 export default {
+  components: { AButton },
   name: "TheTimer",
   setup() {
     const timer = useTimer();
