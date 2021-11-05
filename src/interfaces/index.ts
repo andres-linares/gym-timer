@@ -1,5 +1,5 @@
 export interface Timelog {
   datetime: number;
-  timeInMs: number;
+  time: number;
   event: string;
 }

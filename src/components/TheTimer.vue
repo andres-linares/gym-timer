@@ -16,14 +16,26 @@
 <script>
 import useTimer from "@/composables/useTimer";
 import AButton from "./atoms/AButton.vue";
+import { useStore } from "vuex";
 
 export default {
   components: { AButton },
   name: "TheTimer",
   setup() {
+    const store = useStore();
     const timer = useTimer();
 
-    return { ...timer };
+    const startTimer = () => {
+      store.commit("addTimelog", { event: "START" });
+      timer.startTimer();
+    };
+
+    const pauseTimer = () => {
+      store.commit("addTimelog", { event: "PAUSE" });
+      timer.pauseTimer();
+    };
+
+    return { ...timer, startTimer, pauseTimer };
   },
 };
 </script>

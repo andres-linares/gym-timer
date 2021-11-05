@@ -33,13 +33,7 @@ export default {
     const countdown = useCountdown(props.defaultValue);
 
     const startCountdown = () => {
-      const timelog = {
-        datetime: Date.now(),
-        timeInMs: 1000,
-        event: props.name,
-      };
-      store.commit("addTimelog", timelog);
-
+      store.commit("addTimelog", { event: props.name });
       countdown.startCountdown();
     };
 

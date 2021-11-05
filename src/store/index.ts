@@ -11,6 +11,15 @@ export default createStore<State>({
   },
   mutations: {
     addTimelog(state, payload: Timelog) {
+      payload.datetime = Date.now();
+
+      if (state.timelogs.length) {
+        const lastTimelog = state.timelogs[state.timelogs.length - 1];
+        payload.time = payload.datetime - lastTimelog.datetime;
+      } else {
+        payload.time = 0;
+      }
+
       state.timelogs = [...state.timelogs, payload];
     },
   },
