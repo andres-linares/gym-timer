@@ -63,14 +63,14 @@ export default {
     justify-content: space-between;
     margin-bottom: 2vh;
 
-    button {
-      border-radius: 0.3em;
-      border: none;
-      background: #000;
-      color: #fff;
-      font-size: clamp(1.125rem, 2vw, 1.5rem);
-      padding: 0.3em 1em;
-    }
+    // button {
+    //   border-radius: 0.3em;
+    //   border: none;
+    //   background: #000;
+    //   color: #fff;
+    //   font-size: clamp(1.125rem, 2vw, 1.5rem);
+    //   padding: 0.3em 1em;
+    // }
 
     input {
       height: min-content;

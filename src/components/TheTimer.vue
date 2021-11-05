@@ -44,19 +44,13 @@ export default {
     row-gap: 1.5vh;
     column-gap: 4vw;
 
-    button {
-      font-size: clamp(1.125rem, 2vw, 1.5rem);
-      padding: 0.35em 0.6em;
-      border-radius: 0.3em;
-      border: none;
-      background: #000;
-      color: #fff;
-
-      &:disabled {
-        background: #5d5d5d;
-        opacity: 0.5;
-      }
-    }
+    // button {
+    //   font-size: clamp(1.125rem, 2vw, 1.5rem);
+    //   padding: 0.35em 0.6em;
+    //   border-radius: 0.3em;
+    //   border: none;
+    //   color: #fff;
+    // }
   }
 }
 </style>

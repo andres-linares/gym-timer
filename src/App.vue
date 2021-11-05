@@ -3,24 +3,35 @@
 </template>
 
 <style lang="scss">
+:root {
+  --color-primary: #012a4a;
+
+  --background-color: #f6f8f9;
+
+  --text-color: #2c3e50;
+  --text-color-alt: #f5f1ef;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #297dbe;
+
+    --background-color: #2f3236;
+
+    --text-color: #ececf0;
+    --text-color-alt: #f9f7f6;
+  }
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--text-color);
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+body {
+  background: var(--background-color);
 }
 </style>
