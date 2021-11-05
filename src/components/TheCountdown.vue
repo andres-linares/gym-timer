@@ -10,7 +10,7 @@
         :aria-labelledby="id"
       />
 
-      <a-button @click="startCountdown">Iniciar</a-button>
+      <a-button @click="startCountdown" size="sm">Iniciar</a-button>
     </div>
     <div class="display">{{ formattedTime }}</div>
   </div>
@@ -62,15 +62,6 @@ export default {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2vh;
-
-    // button {
-    //   border-radius: 0.3em;
-    //   border: none;
-    //   background: #000;
-    //   color: #fff;
-    //   font-size: clamp(1.125rem, 2vw, 1.5rem);
-    //   padding: 0.3em 1em;
-    // }
 
     input {
       height: min-content;

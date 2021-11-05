@@ -1,5 +1,5 @@
 <template>
-  <button :class="variant">
+  <button :class="`${variant} ${size}`">
     <span><slot /></span>
   </button>
 </template>
@@ -9,6 +9,7 @@ export default {
   name: "AButton",
   props: {
     variant: { type: String, default: "primary" },
+    size: { type: String, default: "md" },
   },
 };
 </script>
@@ -25,5 +26,9 @@ button {
   &:disabled {
     opacity: 0.5;
   }
+}
+
+button.sm {
+  font-size: clamp(1rem, 1.75vw, 1.125rem);
 }
 </style>
