@@ -9,6 +9,11 @@ export default createStore<State>({
   state: {
     timelogs: [],
   },
+  getters: {
+    lastTimelog(state) {
+      return state.timelogs[state.timelogs.length - 1];
+    },
+  },
   mutations: {
     addTimelog(state, payload: Timelog) {
       payload.datetime = Date.now();
